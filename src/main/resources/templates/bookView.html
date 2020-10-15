@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <title>WeCanCodeIT Books : Refactoring</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/layout.css" rel="stylesheet">
+</head>
+
+<body>
+<section class="book-details">
+    <h1 class="book-details__title" th:text="${book.title}">Refactoring</h1>
+    <h2 class="book-details__author" th:each="author: ${book.authors}"
+        th:text="${author.firstName}+' '+ ${author.lastName}">Martin Fowler</h2>
+    <p class="book-details__summary" th:text="${book.description}">
+        The original book on refactoring code.
+    </p>
+</section>
+<!--<div th:each="hashtag : ${book.hashTags}" th:text = "${hashtag.name}"></div>-->
+
+<form th:action="'/book/' + ${book.id} + '/add-hashtag'" method="POST">
+    <input name = "hashTagName" type="text">
+    <button type="submit">Add Hashtag</button>
+</form>
+
+
+<a class="nav__home" th:href="'/campuses/'+${book.campus.location}">back to books</a>
+</body>
+</html>

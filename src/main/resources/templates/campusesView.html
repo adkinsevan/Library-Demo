@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+
+<body>
+<h1>We Can Code Libraries</h1>
+
+<h2 th:each="campus:${campuses}"><a th:href="@{'/campuses/'+ ${campus.location}}"
+                                    th:text="${campus.location}">Campus</a>
+</h2>
+<form action="add-campus" method="POST">
+    <input name="location" type="text">
+    <button type="submit">Add Campus</button>
+</form>
+
+</body>
+
+</html>

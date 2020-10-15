@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+    <title>WeCanCodeIT Library Books</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/layout.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+    <h1 class="header__title">Welcome to the WeCanCodeIT Library</h1>
+    <h2 th:text="${campus.location}">Location</h2>
+</header>
+<section class="book-list">
+    <h2 class="book-list__heading">Here is a list of our books:</h2>
+    <nav class="book-list-nav">
+        <ul class="book-list-links">
+            <li class="book-list-links__book" th:each="book:${campus.books}">
+                <a class="book-list-links__link" th:href="@{'/books/'+ ${book.id}}"
+                   th:text="${book.title}">Refactoring</a>
+            </li>
+
+        </ul>
+    </nav>
+    <a class="nav__home" href="/campuses">back to campuses</a>
+    <form method="POST" th:action="'/campuses/'+ ${campus.location} + '/add-book'">
+        <input name="campusId" th:value="${campus.id}" type="hidden">
+        <input type="text">
+    </form>
+</section>
+</body>
+
+</html>
